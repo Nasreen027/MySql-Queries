@@ -1,0 +1,9 @@
+Procedure:
+DELIMITER //
+CREATE PROCEDURE increment6(e_id int, e_salary int)
+BEGIN 
+UPDATE staffdata SET salary = salary + e_salary WHERE id = e_id;
+END //
+
+Task Query Usin Having Clause:
+SELECT SUM(salary), Dept FROM register GROUP BY(Dept) HAVING SUM(salary) >50000
