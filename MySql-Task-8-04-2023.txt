@@ -1,0 +1,10 @@
+Q#2:
+SELECT* FROM staffinfo WHERE gender = "female";
+Q#3:
+SELECT salary FROM staffinfo WHERE salary >= 75000 LIMIT 3;
+Q#4:
+SELECT name,salary FROM staffinfo WHERE salary>= 75000 AND gender = "female" LIMIT 3;
+Q#5:
+UPDATE staffinfo SET salary = salary+2500;
+Q#6:
+UPDATE staffinfo SET salary = salary+1000 WHERE dept != "management";
