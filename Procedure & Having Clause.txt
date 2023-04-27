@@ -7,3 +7,31 @@ END //
 
 Task Query Usin Having Clause:
 SELECT SUM(salary), Dept FROM register GROUP BY(Dept) HAVING SUM(salary) >50000
+
+/////////////////////////
+//////////Task/////////
+///////////////////////
+
+Q#3:
+  SELECT * FROM `staffdata` WHERE date_of_birth BETWEEN "2009-03-05" AND "2019-03-05" ORDER BY(date_of_birth) ASC;
+Q#4:
+SELECT AVG(age) AS "Average Age" FROM `staffdata`; 
+Q#5:
+SELECT gender AS Gender, COUNT(gender) AS Total FROM staffdata GROUP BY(gender);
+Q#6:
+SELECT dept AS Department, COUNT(dept) AS "Head Count", AVG(salary)AS "Average Salary" FROM staffdata GROUP BY(dept);
+
+///////////////////////
+////////Task//////////
+/////////////////////
+
+Q#2:
+SELECT* FROM staffinfo WHERE gender = "female";
+Q#3:
+SELECT salary FROM staffinfo WHERE salary >= 75000 LIMIT 3;
+Q#4:
+SELECT name,salary FROM staffinfo WHERE salary>= 75000 AND gender = "female" LIMIT 3;
+Q#5:
+UPDATE staffinfo SET salary = salary+2500;
+Q#6:
+UPDATE staffinfo SET salary = salary+1000 WHERE dept != "management";
