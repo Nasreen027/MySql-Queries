@@ -1,0 +1,8 @@
+Left Join:
+
+SELECT* FROM
+staffdata AS Table1
+LEFT JOIN
+staffinfo As Table2
+ON
+Table1.id = TABLE2.id;
