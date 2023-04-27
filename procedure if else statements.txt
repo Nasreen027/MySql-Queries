@@ -1,0 +1,11 @@
+DELIMITER //
+CREATE PROCEDURE abc2(p_id int,p_salary int)
+BEGIN
+IF p_salary >= 0 THEN
+BEGIN 
+UPDATE register SET salary = salary + p_salary WHERE id = p_id;
+END;
+ELSE
+SELECT "negative value not allowed"
+END IF;
+END;
