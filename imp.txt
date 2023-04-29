@@ -1,0 +1,31 @@
+DELIMITER //
+CREATE PROCEDURE ifElse(user_id int,user_quan int)
+BEGIN 
+DECLARE
+ qty INT;
+SELECT quantity INTO qty FROM products;
+IF user_quan < qty THEN 
+BEGIN 
+SELECT "Stock not available";
+END;
+ELSE 
+INSERT INTO sales2 (p_id, p_quantity) VALUES (user_id, user_quan);
+END IF;
+END;
+
+
+
+DELIMITER //
+CREATE TRIGGER insert_data
+BEGIN
+BEFORE
+INSERT ON `staffdata`
+FOR EACH ROWTHEN
+INSERT INT
+BEGIN
+IF new.Institute = "Aptech" O staffdata (branch) VALUES ("Shahrah-e-faisal")
+END IF; //
+END;
+
+
+fi
