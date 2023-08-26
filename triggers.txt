@@ -1,0 +1,58 @@
+select * from Customers;
+select CompanyName, ContactName, ContactTitle, coalesce(Region,'UK') as updatedRegion from customers;
+create table studentsData(
+stID int identity(1,1) primary key,
+stName varchar(50),
+stBirthday date 
+)
+create table studentsLog(
+stID int,
+stName varchar(50),
+stBirthday date,
+logAction varchar(100),
+logTimestamp datetime 
+);
+insert into studentsData values
+('Sana','2005-05-01'),
+('Eman','2002-01-05'),
+('Iqra','2006-06-09'),
+('Fizza','2005-12-01'),
+('Asad','2003-01-12'),
+('Samad','2004-12-08'),
+('Sami','2006-09-12'),
+('Saad','2006-07-06'),
+('Hamza','2006-03-09'),
+('Faisal','2005-01-03'),
+('Anas','2004-08-21'),
+('Suleman','2005-11-11'),
+('Amna','2002-04-04');
+select * from studentsData;
+SELECT *, DATEDIFF(YEAR, stBirthday, GETDATE()) AS age
+FROM studentsData;
+
+create trigger trgInsertStudent on studentsData
+for insert
+as
+declare @stID int, @stName varchar(50), @stBirthday date, @logAction varchar(100), @logTimestamp datetime;
+select @stID =stID from inserted;
+select @stName =stName from inserted;
+select @stBirthday =stBirthday from inserted;
+set @logAction ='INSERTED';
+insert into studentsLog values(@stID,@stName,@stBirthday,@logAction,GETDATE());
+print 'After insert trigger fired';
+go;
+alter trigger trgUpdateStudent on studentsData
+for update
+as
+declare @stID int, @stName varchar(50), @stBirthday date, @logAction varchar(100), @logTimestamp datetime;
+select @stID =stID from inserted;
+select @stName =stName from inserted;
+select @stBirthday =stBirthday from inserted;
+IF(UPDATE(stName) or update(stBirthday)) set @logAction ='Updated name or birthday';
+insert into studentsLog values(@stID,@stName,@stBirthday,@logAction,GETDATE());
+print 'After UPDATE trigger fired';
+go
+insert into studentsData values('Ali','2005-11-11');
+update studentsData set stName = 'Amna' where stID = 14;
+select *from studentsData;
+select * from studentsLog;
